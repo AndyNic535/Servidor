@@ -25,7 +25,6 @@ const TejidosSchema = Schema({
 
     img1: {
         type: String,
-        required: [ true, "Es obligatoria almenos una imagen" ]
     },
 
     img2: {

@@ -5,7 +5,7 @@ const debeConection = async() => {
 
     try {
 
-        await mongoose.connect('mongodb://localhost/my_database', {
+        await mongoose.connect('mongodb+srv://AndyNic:scEAeLLvnLWwRUEP@cluster0.z1lzq.mongodb.net/apibotejidos', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
