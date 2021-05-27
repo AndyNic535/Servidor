@@ -1,13 +1,29 @@
-
 const { request, response } = require('express');
 
-const { Tejido } = require("../models/tejidos.models");
+const  Tejido  = require("../models/tejidos.models");
 
-const getTejidos = ( req = request, res = response ) => {
+
+
+const getTejidos = async( req = request, res = response ) => {
+
+    const { limit = 20, from = 0 } = req.query;
+
+    const query =  { status: true } 
+
+    const [ total, tejidos ] = await Promise.all([
+
+        Tejido.countDocuments( query ),
+        Tejido.find( query )
+
+            .skip( Number( from ) )
+            .limit( Number( limit ) )
+    ]);
 
     res.json({
-        msj: "eo"
+        total,
+        tejidos
     });
+
 };
 
 const putTejidos = ( req = request, res = response ) => {
@@ -20,7 +36,7 @@ const putTejidos = ( req = request, res = response ) => {
 
 const postTejidos = async( req = request, res = response ) => {
 
-    const { nombre, talla, precio} = req.body;
+    const { nombre, talla, color, lana_ocupada, punto, precio, serial } = req.body;
 
     const tejidoDB = await Tejido.findOne({ nombre });
 
@@ -35,7 +51,11 @@ const postTejidos = async( req = request, res = response ) => {
     const data = {
         nombre,
         talla,
-        precio
+        color,
+        lana_ocupada,
+        punto,
+        precio,
+        serial
     };
 
     const tejido = new Tejido( data );
@@ -55,10 +75,9 @@ const deleteTejidos = ( req = request, res = responset ) => {
     });
 };
 
-// Export
+// Exports
 
 module.exports = {
-
     getTejidos,
     putTejidos,
     postTejidos,

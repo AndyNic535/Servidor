@@ -1,4 +1,3 @@
-
 const express = require( 'express' );
 const cors = require( 'cors' );
 const debeConection = require('../data_pase/config.db');
@@ -14,7 +13,13 @@ class Server{
 
         this.paths = {
 
-            tejidos: '/api/tejidos'
+            tejidos: '/api/tejidos',
+            lanas: '/api/lanas',
+            hilos: '/api/hilos',
+            palillos: '/api/palillos',
+            crochets: '/api/crochets',
+            accesorios: '/api/accesorios',
+            varios: '/api/varios'
         };  
 
         // TUDU: Conectar a base de datos.
@@ -55,6 +60,12 @@ class Server{
     routes() {
 
         this.app.use( this.paths.tejidos, require( '../routes/tejidos.routes' ) );
+        this.app.use( this.paths.lanas, require( '../routes/lanas.routes' ) );
+        this.app.use( this.paths.hilos, require( '../routes/hilos.routes' ) );
+        this.app.use( this.paths.palillos, require( '../routes/palillos.routes' ) );
+        this.app.use( this.paths.crochets, require( '../routes/crochets.routes' ) );
+        this.app.use( this.paths.accesorios, require( '../routes/accesorios.routes' ) );
+        this.app.use( this.paths.varios, require( '../routes/varios.routes' ) );
     };
 
     listen() {

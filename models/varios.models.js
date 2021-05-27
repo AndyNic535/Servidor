@@ -1,47 +1,53 @@
 const { Schema, model } = require( "mongoose" );
 
-const TejidosSchema = Schema({
+const VariosSchema = Schema({
 
     img1: {
-        type: String,
+        type: String
     },
 
     img2: {
         type: String
     },
 
-    img3: {
-        type: String
-    },
-
-    img4: {
-        type: String
-    },
-
-    img5: {
-        type: String
-    },
-
     nombre: {
         type: String,
-        required: [ true, "El nombre es obligatorio" ],
+        required: [ true, "El nombre es obligatorio" ]
     },
 
     talla: {
-        type: String,
-        required: [ true, "La talla es obligatoria" ],
-        enum:["S", "L", "M", "XL", "XXL"]
+        type: String
+    },
+
+    marca: {
+        type: String
+    },
+
+    grosor: {
+        type: String
+    },
+
+    largo: {
+        type: String
     },
 
     color: {
         type: String
     },
 
-    lana_ocupada: {
+    material: {
         type: String
     },
 
-    punto: {
+    forma: {
+        type: String
+    },
+
+    cantidad: {
+        type: String
+    },
+
+    uso: {
         type: String
     },
 
@@ -52,7 +58,6 @@ const TejidosSchema = Schema({
 
     serial: {
         type: String,
-        require: [ true, "La serial es obligatoria" ],
         unique: true
     },
 
@@ -64,4 +69,4 @@ const TejidosSchema = Schema({
 
 // Export
 
-module.exports = model( "Tejido", TejidosSchema );
+module.exports = model( "Vario", VariosSchema );
